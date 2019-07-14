@@ -41,6 +41,14 @@ namespace Capstone.Web.Controllers
             return View(vm);
         }
 
+        [HttpPost]
+        public IActionResult Detail(ParkDetailVM vm)
+        {
+            SetTemperaturePreference(vm.tempUnits);
+
+            var obj = new { Park = vm.ParkCode };                       //pass the parkCode to the next request
+            return RedirectToAction("Detail", obj);                         //redirect the user back to the same park detail page (units should change now!)
+        }
 
 
         private string GetTemperaturePreference()

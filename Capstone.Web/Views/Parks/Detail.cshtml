@@ -16,11 +16,11 @@
                             <h2 class="parkName"><b>@Model._Park.ParkName, @Model._Park.State</b></h2>
                             @if (Model._Park.Elevation == 0)
                             {
-                                <h4 class="parkName">Established @Model._Park.YearFounded | Elevation: Sea Level</h4>
+                                <h4 class="parkName">Established: @Model._Park.YearFounded | Elevation: Sea Level</h4>
                             }
                             else
                             {
-                                <h4 class="parkName">Established @Model._Park.YearFounded | Elevation: @Model._Park.Elevation.ToString("#,###") Feet</h4>
+                                <h4 class="parkName">Established: @Model._Park.YearFounded | Elevation: @Model._Park.Elevation.ToString("#,###") Feet</h4>
                             }
                             <p>@Model._Park.Description</p>
                             <p>
@@ -39,33 +39,49 @@
                 <td>
                     <div class="card">
                         <div class="dayWeather">
-                            <p>Today: @Model.Weather[0].Forecast</p>
-                            <img class="weatherIcon" src="~/images/weather/@(Model.Weather[0].Forecast.Replace(" ", "") + ".png")" />
-                            @if (Model.tempUnits.ToLower() == "f")
-                            {
-                                <p>High: @(Model.Weather[0].High)&deg; F | Low: @(Model.Weather[0].Low)&deg; F</p>
-                            }
-                            else
-                            {
-                                <p>High: @(((Model.Weather[0].High - 32) / 1.8).ToString("#.#")) &deg; C | Low: @(((Model.Weather[0].Low - 32) / 1.8).ToString("#.#"))&deg; C</p>
-                            }
-                            <p>@Model.Weather[0].Advisory</p>
+                            <div>
+                                <p>Today</p>
+                            </div>
+                            <div>
+                                <img class="weatherIcon" src="~/images/weather/@(Model.Weather[0].Forecast.Replace(" ", "") + ".png")" />
+                            </div>
+                            <div>
+                                @if (Model.tempUnits.ToLower() == "f")
+                                {
+                                    <p>High: @(Model.Weather[0].High)&deg; F | Low: @(Model.Weather[0].Low)&deg; F</p>
+                                }
+                                else
+                                {
+                                    <p>High: @(((Model.Weather[0].High - 32) / 1.8).ToString("#.#"))&deg; C | Low: @(((Model.Weather[0].Low - 32) / 1.8).ToString("#.#"))&deg; C</p>
+                                }
+                            </div>
+                            <div>
+                                <p>@Model.Weather[0].Advisory</p>
+                            </div>                            
                         </div>
 
                         @for (int i = 1; i < 5; i++)
                         {
                             <div class="dayWeather">
-                                <p>@DateTime.Now.AddDays(i).DayOfWeek: @Model.Weather[i].Forecast</p>
-                                <img class="weatherIcon" src="~/images/weather/@(Model.Weather[i].Forecast.Replace(" ", "") + ".png")" />
-                                @if (Model.tempUnits.ToLower() == "f")
-                                {
-                                    <p>High: @(Model.Weather[i].High)&deg; F | Low: @(Model.Weather[i].Low)&deg; F</p>
-                                }
-                                else
-                                {
-                                    <p>High: @(((Model.Weather[i].High - 32) / 1.8).ToString("#.#")) &deg; C | Low: @(((Model.Weather[i].Low - 32) / 1.8).ToString("#.#"))&deg; C</p>
-                                }
-                                <p>@Model.Weather[i].Advisory</p>
+                                <div>
+                                    <p>@DateTime.Now.AddDays(i).DayOfWeek</p>
+                                </div>
+                                <div>
+                                    <img class="weatherIcon" src="~/images/weather/@(Model.Weather[i].Forecast.Replace(" ", "") + ".png")" />
+                                </div>
+                                <div>
+                                    @if (Model.tempUnits.ToLower() == "f")
+                                    {
+                                        <p>High: @(Model.Weather[i].High)&deg; F | Low: @(Model.Weather[i].Low)&deg; F</p>
+                                    }
+                                    else
+                                    {
+                                        <p>High: @(((Model.Weather[i].High - 32) / 1.8).ToString("#.#")) &deg; C | Low: @(((Model.Weather[i].Low - 32) / 1.8).ToString("#.#"))&deg; C</p>
+                                    }
+                                </div>
+                                <div>
+                                    <p>@Model.Weather[i].Advisory</p>
+                                </div>                                
                             </div>
                         }
 

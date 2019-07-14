@@ -47,7 +47,7 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding: 2px 16px;
+    padding: 20px 16px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin-top: 20px;
@@ -65,8 +65,7 @@ body {
 }*/
 
 .card img {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    
     padding-right: 15px;
     width: 600px;
 }
@@ -85,9 +84,11 @@ body {
 .dayWeather{
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+
     align-items:center;
     width: 20%;
+    padding: 0px 1%;
 }
 
 .card img.weatherIcon {

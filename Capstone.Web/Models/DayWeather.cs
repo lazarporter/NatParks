@@ -20,19 +20,20 @@ namespace Capstone.Web.Models
                 switch (this.Forecast)
                 {
                     case "snow":
-                        result = "National Parks Service recommends packing snowshoes today.";
+                        result = "Snowshoes recommended.";
                         break;
                     case "rain":
-                        result = "National Parks Service recommends packing rain gear, including waterproof shoes.";
+                        result = "Rain gear recommended, including waterproof shoes.";
                         break;
                     case "thunderstorms":
-                        result = "National Parks Services recommends you seek shelter and avoid hiking on exposed ridges.";
+                        result = "Seek shelter and avoid hiking on exposed ridges.";
                         break;
                     case "sunny":
-                        result = "National Parks Services recommends bringing sunscreen with SPF 50 rating.";
+                        result = "Sunscreen with SPF 50 rating recommended.";
                         break;
 
                     default:
+                        result = "Looks like a beautiful day!";
                         break;
                 }
                 if (High > 75)
