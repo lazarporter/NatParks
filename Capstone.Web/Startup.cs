@@ -35,6 +35,7 @@ namespace Capstone.Web
             string connectionString = Configuration.GetConnectionString("Default");
             services.AddTransient<IParkDAO, ParkSqlDAO>(p => new ParkSqlDAO(connectionString));
             services.AddTransient<IWeatherDAO, WeatherSqlDAO>(w => new WeatherSqlDAO(connectionString));
+            services.AddTransient<ISurveyDAO, SurveySqlDAO>(S => new SurveySqlDAO(connectionString));
 
             //Session config
             services.AddDistributedMemoryCache();

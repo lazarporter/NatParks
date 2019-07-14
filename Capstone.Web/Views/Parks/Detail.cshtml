@@ -96,7 +96,7 @@
         <form method="POST" asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@Model._Park.ParkCode">
             <input asp-for="tempUnits" value="c" type="hidden" />
             <input asp-for="ParkCode" value="@Model._Park.ParkCode" type="hidden" />
-            <input type="submit" value="Switch to Celcius" />
+            <input class ="btn btn-primary" type="submit" value="Switch to Celcius" />
         </form>
     }
     else
@@ -104,7 +104,7 @@
         <form method="POST" asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@Model._Park.ParkCode">
             <input asp-for="tempUnits" value="f" type="hidden" />
             <input asp-for="ParkCode" value="@Model._Park.ParkCode" type="hidden" />
-            <input type="submit" value="Switch to Fahrenheit" />
+            <input class ="btn btn-primary" type="submit" value="Switch to Fahrenheit" />
         </form>
     }
 </div>
