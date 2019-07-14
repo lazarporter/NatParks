@@ -4,26 +4,24 @@
 }
 
 <h2>Index</h2>
-
-<table>
-    @foreach (Park park in Model)
-    {
-        string imageFileName = park.ParkCode + ".jpg";
-        <tr>
-            @*<td><a asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@park.ParkCode"><img src="/images/parks/@imageFileName" /></a></td>
-            <td>
-                <h1><a asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@park.ParkCode">@park.ParkName</a></h1>
-                <p>@park.Description</p>
-            </td>*@
-            <td>
-                <div class="card">
-                    <img src="/images/parks/@imageFileName" alt="@park.ParkName" style="width:100%">
-                    <div class="container">
-                        <h4><b><a asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@park.ParkCode">@park.ParkName</a></b></h4>
-                        <p>@park.Description</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    }
-</table>
+<div class="container">
+    <table>
+        @foreach (Park park in Model)
+        {
+            string imageFileName = park.ParkCode + ".jpg";
+            <tr>
+                <td>
+                    <a asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@park.ParkCode">
+                        <div class="card">
+                            <img src="/images/parks/@imageFileName" alt="@park.ParkName">
+                            <div class="parkSummary">
+                                <h2 class="parkName"><b>@park.ParkName</b></h2>
+                                <p>@park.Description</p>
+                            </div>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
