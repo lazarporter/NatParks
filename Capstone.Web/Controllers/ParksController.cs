@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Capstone.Web.DAL;
 using Capstone.Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Web.Controllers
@@ -29,10 +30,27 @@ namespace Capstone.Web.Controllers
             return View(this.parkDao.GetAllParks());
         }
 
+        [HttpGet]
         public IActionResult Detail(string Park)
         {
-            IList<DayWeather> vm = this.weatherDao.GetWeatherByParkCode(Park);
+            ParkDetailVM vm = new ParkDetailVM();
+            vm.tempUnits = GetTemperaturePreference();                      //get the selected units from session (or null)
+            vm._Park = this.parkDao.GetParkBy_Code(Park);                   //retreive PARK from database
+            vm.Weather = this.weatherDao.GetWeatherByParkCode(Park);        //retreive corresponding weather 
+                                                                            //pass the vm to our Detail View.
             return View(vm);
+        }
+
+
+
+        private string GetTemperaturePreference()
+        {
+            return HttpContext.Session.GetString("TempUnits") ?? "f";       //if no pref in session, default to "f" for fahrenheit
+        }
+
+        private void SetTemperaturePreference(string pref)
+        {
+            HttpContext.Session.SetString("TempUnits", pref);               //store the selected units in session
         }
     }
 }

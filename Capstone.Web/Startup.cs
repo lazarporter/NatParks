@@ -36,6 +36,15 @@ namespace Capstone.Web
             services.AddTransient<IParkDAO, ParkSqlDAO>(p => new ParkSqlDAO(connectionString));
             services.AddTransient<IWeatherDAO, WeatherSqlDAO>(w => new WeatherSqlDAO(connectionString));
 
+            //Session config
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                // Sets session expiration to 20 minuates
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -53,6 +62,7 @@ namespace Capstone.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

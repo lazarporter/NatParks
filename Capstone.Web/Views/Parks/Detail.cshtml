@@ -1,12 +1,95 @@
-﻿@model IList<DayWeather>
+﻿@model ParkDetailVM
 @{
     ViewData["Title"] = "Detail";
+    string parkImageURI = Model._Park.ParkCode + ".jpg";
 }
 
 <h2>Detail</h2>
+<div class="container">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="card">
+                        <img src="/images/parks/@parkImageURI" alt="@Model._Park.ParkName">
+                        <div class="parkSummary">
+                            <h2 class="parkName"><b>@Model._Park.ParkName, @Model._Park.State</b></h2>
+                            @if (Model._Park.Elevation == 0)
+                            {
+                                <h4 class="parkName">Established @Model._Park.YearFounded | Elevation: Sea Level</h4>
+                            }
+                            else
+                            {
+                                <h4 class="parkName">Established @Model._Park.YearFounded | Elevation: @Model._Park.Elevation.ToString("#,###") Feet</h4>
+                            }
+                            <p>@Model._Park.Description</p>
+                            <p>
+                                @Model._Park.ParkName is an escape for nearly @Model._Park.AnVisitors.ToString("#,###") people each year!
+                                With @Model._Park.TrailMiles.ToString("#.##") miles of trail and @Model._Park.CampsiteCount.ToString("#,###") campsites
+                                to choose from, this @Model._Park.Climate.ToString().ToLower() climate is a favorite getaway.
+                                Would you believe that @Model._Park.ParkName is home to @Model._Park.Animals different animal species?
+                            </p>
 
-@foreach(DayWeather dayweather in Model)
-{
-    <p>@dayweather.Forecast</p>
-}
+                            <h4>Entrance Fee: $@Model._Park.Fee.ToString("0.##")</h4>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="card">
+                        <div class="dayWeather">
+                            <p>Today: @Model.Weather[0].Forecast</p>
+                            <img class="weatherIcon" src="~/images/weather/@(Model.Weather[0].Forecast.Replace(" ", "") + ".png")" />
+                            @if (Model.tempUnits.ToLower() == "f")
+                            {
+                                <p>High: @(Model.Weather[0].High)&deg; F | Low: @(Model.Weather[0].Low)&deg; F</p>
+                            }
+                            else
+                            {
+                                <p>High: @(((Model.Weather[0].High - 32) / 1.8).ToString("#.#")) &deg; C | Low: @(((Model.Weather[0].Low - 32) / 1.8).ToString("#.#"))&deg; C</p>
+                            }
+                            <p>@Model.Weather[0].Advisory</p>
+                        </div>
+
+                        @for (int i = 1; i < 5; i++)
+                        {
+                            <div class="dayWeather">
+                                <p>@DateTime.Now.AddDays(i).DayOfWeek: @Model.Weather[i].Forecast</p>
+                                <img class="weatherIcon" src="~/images/weather/@(Model.Weather[i].Forecast.Replace(" ", "") + ".png")" />
+                                @if (Model.tempUnits.ToLower() == "f")
+                                {
+                                    <p>High: @(Model.Weather[i].High)&deg; F | Low: @(Model.Weather[i].Low)&deg; F</p>
+                                }
+                                else
+                                {
+                                    <p>High: @(((Model.Weather[i].High - 32) / 1.8).ToString("#.#")) &deg; C | Low: @(((Model.Weather[i].Low - 32) / 1.8).ToString("#.#"))&deg; C</p>
+                                }
+                                <p>@Model.Weather[i].Advisory</p>
+                            </div>
+                        }
+
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    @if (Model.tempUnits.ToLower() == "f")
+    {
+        <form method="POST" asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@Model._Park.ParkCode">
+            <input asp-for="tempUnits" value="c" type="hidden" />
+            <input asp-for="ParkCode" value="@Model._Park.ParkCode" type="hidden" />
+            <input type="submit" value="Switch to Celcius" />
+        </form>
+    }
+    else
+    {
+        <form method="POST" asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@Model._Park.ParkCode">
+            <input asp-for="tempUnits" value="f" type="hidden" />
+            <input asp-for="ParkCode" value="@Model._Park.ParkCode" type="hidden" />
+            <input type="submit" value="Switch to Fahrenheit" />
+        </form>
+    }
+</div>
 
