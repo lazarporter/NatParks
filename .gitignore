@@ -1,4 +1,5 @@
-
+#ignore config file (should be stored in Enviroment variables in production)
+Capstone.Web/appsettings.json
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
