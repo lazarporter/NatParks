@@ -11,7 +11,7 @@
             string imageFileName = park.ParkCode + ".jpg";
             <tr>
                 <td>
-                    <a asp-controller="Parks" asp-action="Detail" asp-route-parkCode="@park.ParkCode">
+                    <a asp-controller="Parks" asp-action="Detail" asp-route-Park="@park.ParkCode">
                         <div class="card">
                             <img src="/images/parks/@imageFileName" alt="@park.ParkName">
                             <div class="parkSummary">

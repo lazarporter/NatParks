@@ -1,0 +1,12 @@
+﻿@model IList<DayWeather>
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>Detail</h2>
+
+@foreach(DayWeather dayweather in Model)
+{
+    <p>@dayweather.Forecast</p>
+}
+

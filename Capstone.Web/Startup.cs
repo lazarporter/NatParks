@@ -33,8 +33,8 @@ namespace Capstone.Web
 
             //Dependency injection for DAO interfaces in controllers
             string connectionString = Configuration.GetConnectionString("Default");
-            services.AddTransient<IParkDAO, ParkSqlDAO>(d => new ParkSqlDAO(connectionString));
-
+            services.AddTransient<IParkDAO, ParkSqlDAO>(p => new ParkSqlDAO(connectionString));
+            services.AddTransient<IWeatherDAO, WeatherSqlDAO>(w => new WeatherSqlDAO(connectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
