@@ -1,7 +1,11 @@
-﻿
+﻿@model List<Park>
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
 
+@foreach(Park park in Model)
+{
+    <p>@park.ParkName</p>
+}
