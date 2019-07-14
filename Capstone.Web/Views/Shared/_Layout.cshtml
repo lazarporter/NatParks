@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Capstone.Web</title>
+    <title>@ViewData["Title"] - National Parks</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -19,7 +19,7 @@
 <body>    
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <img src="~/images/logo.png" />
+            <a asp-controller="Parks" asp-action="Index"><img src="~/images/logo.png" /></a>
         </div>
         <div class="container">
             <div class="navbar-header">
