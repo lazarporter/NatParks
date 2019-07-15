@@ -1,7 +1,26 @@
-﻿
+﻿@model List<KeyValuePair<string, int>>
 @{
     ViewData["Title"] = "Survey";
 }
 
 <h2>Index</h2>
-
+<p>Your feedback is very important to us! Please consider taking our brief survey to help use better understand how to serve you.</p>
+<a class="btn btn-primary" asp-controller="Survey" asp-action="TakeSurvey">Take Survey</a>
+<h2><b>Current Rankings</b></h2>
+<table class="">
+    <thead>
+        <tr>
+            <th>Park</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(KeyValuePair<string, int> kvp in Model)
+        {
+            <tr>
+                <td>@kvp.Key</td>
+                <td>@kvp.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>

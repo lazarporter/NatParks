@@ -42,7 +42,7 @@ namespace Capstone.Web.DAL
             }
         }
 
-        public List<KeyValuePair<string, int>> SurveyRankings()
+        public List<KeyValuePair<string, int>> GetSurveyRankings()
         {
             List<KeyValuePair<string, int>> results = new List<KeyValuePair<string, int>>();
             try
@@ -54,7 +54,7 @@ namespace Capstone.Web.DAL
                     string sql = $"select MAX(s.parkCode) as parkCode, COUNT(s.surveyId) as rank " +
                         $"from survey_result s join park p on p.parkCode = s.parkCode " +
                         $"group by s.parkCode " +
-                        $"order by results desc, parkCode asc;";
+                        $"order by rank desc, parkCode asc;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();

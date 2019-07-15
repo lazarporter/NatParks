@@ -19,6 +19,6 @@ namespace Capstone.Web.DAL
         /// 
         /// </summary>
         /// <returns>An ordered list, highest to lowest, of parks by the number of surveys received</returns>
-        List<KeyValuePair<string, int>> SurveyRankings();
+        List<KeyValuePair<string, int>> GetSurveyRankings();
     }
 }

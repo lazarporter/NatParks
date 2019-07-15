@@ -1,0 +1,63 @@
+﻿@model SurveyVM
+@{
+    ViewData["Title"] = "TakeSurvey";
+}
+
+<h2>TakeSurvey</h2>
+
+<h2>Survey</h2>
+
+<form method="POST" asp-controller="Survey" asp-action="TakeSurvey">
+    <table>
+        <tr>
+            <th><label asp-for="survey.ParkCode">Favorite National Park</label></th>
+            <td>
+                <select asp-for="survey.ParkCode">
+                    @foreach (SelectListItem item in Model.parkNames)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th><label asp-for="survey.Email">Email</label></th>
+            <td><input asp-for="survey.Email" /></td>
+            <td><span asp-validation-for="survey.Email"></span></td>
+        </tr>
+
+        <tr>
+            <th><label asp-for="survey.State">State of Residence</label></th>
+            <td>
+                <select asp-for="survey.State">
+                    @foreach (SelectListItem item in Model.stateNames)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th><label asp-for="survey.ActivityLevel">How Active are you?</label></th>
+            <td>
+                <select asp-for="survey.ActivityLevel">
+                    @foreach (string level in Model.activityLevels)
+                    {
+                        <option value="@level">@level</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+
+    </table>
+
+</form>
+
+
+
