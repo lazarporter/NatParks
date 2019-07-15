@@ -8,55 +8,43 @@
 <h2>Survey</h2>
 
 <form method="POST" asp-controller="Survey" asp-action="TakeSurvey">
-    <table>
-        <tr>
-            <th><label asp-for="survey.ParkCode">Favorite National Park</label></th>
-            <td>
-                <select asp-for="survey.ParkCode">
-                    @foreach (SelectListItem item in Model.parkNames)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-            </td>
-        </tr>
+    <div class="form-group surveyForm">
+        <label asp-for="survey.ParkCode">Favorite National Park</label>
+        <select class="form-control" asp-for="survey.ParkCode">
+            @foreach (SelectListItem item in Model.parkNames)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="survey.Email">Email</label>
+        <input class="form-control" asp-for="survey.Email" />
+        <span asp-validation-for="survey.Email"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="survey.State">State of Residence</label>
+        <select class="form-control" asp-for="survey.State">
+            @foreach (SelectListItem item in Model.stateNames)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="survey.ActivityLevel">How Active are you?</label>
+        <br />
 
-        <tr>
-            <th><label asp-for="survey.Email">Email</label></th>
-            <td><input asp-for="survey.Email" /></td>
-            <td><span asp-validation-for="survey.Email"></span></td>
-        </tr>
+        @foreach (string level in Model.activityLevels)
+        {
+            <label .radio-inline for="@level">
+                <input type="radio" name="@level" value="@level" />
+                @level
+            </label>
+        }
 
-        <tr>
-            <th><label asp-for="survey.State">State of Residence</label></th>
-            <td>
-                <select asp-for="survey.State">
-                    @foreach (SelectListItem item in Model.stateNames)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-            </td>
-        </tr>
-
-        <tr>
-            <th><label asp-for="survey.ActivityLevel">How Active are you?</label></th>
-            <td>
-                <select asp-for="survey.ActivityLevel">
-                    @foreach (string level in Model.activityLevels)
-                    {
-                        <option value="@level">@level</option>
-                    }
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-
-    </table>
-
+    </div>
+    <input class="form-control form-group btn btn-warning" type="submit" value="Submit" />
 </form>
 
 
