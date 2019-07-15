@@ -51,7 +51,7 @@ namespace Capstone.Web.DAL
                 {
                     conn.Open();
 
-                    string sql = $"select MAX(s.parkCode) as parkCode, COUNT(s.surveyId) as rank " +
+                    string sql = $"select MAX(p.parkName) as parkCode, COUNT(s.surveyId) as rank " +
                         $"from survey_result s join park p on p.parkCode = s.parkCode " +
                         $"group by s.parkCode " +
                         $"order by rank desc, parkCode asc;";
