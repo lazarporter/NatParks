@@ -33,16 +33,12 @@
     </div>
     <div class="form-group">
         <label asp-for="survey.ActivityLevel">How Active are you?</label>
-        <br />
-
-        @foreach (string level in Model.activityLevels)
-        {
-            <label .radio-inline for="@level">
-                <input type="radio" name="@level" value="@level" />
-                @level
-            </label>
-        }
-
+        <select class="form-control" asp-for="survey.ActivityLevel">
+            @foreach (string level in Model.activityLevels)
+            {
+                <option value="@level">@level</option>
+            }
+        </select>
     </div>
     <input class="form-control form-group btn btn-warning" type="submit" value="Submit" />
 </form>
